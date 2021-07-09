@@ -9,11 +9,11 @@ class Network {
 			const response = await axios.post(urlUpdateFiware, updateBody);
 			console.log(response.status);
 		} catch (error) {
-		console.error(error);
+			console.error(error);
 		}
 	}
 
-	static async obtemListaOnibus() {
+	static async obtemDadosOnibus() {
 		try {
 			const response = await axios.get(urlPrefeitura);
 			console.log(response.status);

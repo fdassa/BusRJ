@@ -9,10 +9,13 @@ function sleep(ms) {
 
 async function execute() {
 	while(true) {
-		Network.obtemListaOnibus().then( listaOnibus => {
-			const listaOnibusFormatada = BusUtils.formataListaOnibus(listaOnibus);
-			const updateBody = new UpdateBody("append", listaOnibusFormatada);
-			Network.atualizaBancoDeDados(updateBody).then(res => console.log("Successfully updated fiware database"));
+		Network.obtemDadosOnibus().then( dadosOnibus => {
+			const dadosParseados = BusUtils.parseDadosOnibus(dadosOnibus);
+			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaLinhas)).then(res => 
+				Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaOnibus)).then(res => 
+					console.log("Successfully updated fiware database")
+				)
+			);
 		});
 		await sleep(waitTimeAfterUpdate);
 	}
