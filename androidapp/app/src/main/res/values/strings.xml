@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BusRJ</string>
     <string name="title_activity_maps">Map</string>
+    <string name="error_title">Algo deu errado</string>
+    <string name="error_description">Ocorreu um problema ao tentar carregar esta tela. Confira sua conexão e tente novamente.</string>
+    <string name="try_again">Tentar Novamente</string>
 </resources>
