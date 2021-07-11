@@ -1,7 +1,8 @@
-package br.com.fdassa.busrj
+package br.com.fdassa.busrj.features.details
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import br.com.fdassa.busrj.R
 
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
