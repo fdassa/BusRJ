@@ -5,7 +5,8 @@ import br.com.fdassa.busrj.network.models.BusLine
 
 
 class BusRepository(
-    private val busApi: BusApi
+    private val busApi: BusApi,
+    private val busLocalStorage: BusLocalStorage
 ) {
 
     suspend fun getBusesByLine(busLineId: String): List<Bus> {
@@ -18,5 +19,21 @@ class BusRepository(
         return busApi.getBusLines(
             query = "name~=$searchQuery"
         )
+    }
+
+    fun getFavorites(): List<BusLine> = busLocalStorage.getFavoriteList()
+
+    fun isFavorite(busLine: BusLine): Boolean = busLine in getFavorites()
+
+    fun saveFavorite(busLine: BusLine) {
+        val newFavoriteList = getFavorites().toMutableList()
+        newFavoriteList.add(busLine)
+        busLocalStorage.saveFavoriteList(newFavoriteList)
+    }
+
+    fun removeFavorite(busLine: BusLine) {
+        val newFavoriteList = getFavorites().toMutableList()
+        newFavoriteList.remove(busLine)
+        busLocalStorage.saveFavoriteList(newFavoriteList)
     }
 }

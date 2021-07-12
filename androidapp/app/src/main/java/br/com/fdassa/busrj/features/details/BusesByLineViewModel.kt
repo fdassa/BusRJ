@@ -7,6 +7,7 @@ import br.com.fdassa.busrj.network.MutableLiveResource
 import br.com.fdassa.busrj.network.getLiveData
 import br.com.fdassa.busrj.network.launchResource
 import br.com.fdassa.busrj.network.models.Bus
+import br.com.fdassa.busrj.network.models.BusLine
 
 class BusesByLineViewModel(
     private val repository: BusRepository
@@ -20,4 +21,10 @@ class BusesByLineViewModel(
             repository.getBusesByLine(busLineId)
         }
     }
+
+    fun isFavorite(busLine: BusLine) = repository.isFavorite(busLine)
+
+    fun removeFavorite(busLine: BusLine) = repository.removeFavorite(busLine)
+
+    fun saveFavorite(busLine: BusLine) = repository.saveFavorite(busLine)
 }

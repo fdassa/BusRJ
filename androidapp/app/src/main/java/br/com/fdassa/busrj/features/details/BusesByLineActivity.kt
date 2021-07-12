@@ -1,7 +1,10 @@
 package br.com.fdassa.busrj.features.details
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fdassa.busrj.R
 import br.com.fdassa.busrj.databinding.ActivityBusesByLineBinding
@@ -26,6 +29,7 @@ class BusesByLineActivity : AppCompatActivity() {
     private val viewModel: BusesByLineViewModel by viewModel()
     private lateinit var googleMap: GoogleMap
     private lateinit var binding: ActivityBusesByLineBinding
+    private lateinit var favoriteMenuItem: MenuItem
     private val busLine by lazy { intent.getSerializableExtra(EXTRA_BUS_LINE) as BusLine }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,14 +42,43 @@ class BusesByLineActivity : AppCompatActivity() {
         setupObservables()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.favorite_menu, menu)
+        menu.findItem(R.id.favorite_item).setIcon(
+            if (viewModel.isFavorite(busLine)) R.drawable.ic_favorite_filled
+            else R.drawable.ic_favorite_outline
+        )
+        return true
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             android.R.id.home -> {
                 onBackPressed()
                 return true
             }
+            R.id.favorite_item -> {
+                if (viewModel.isFavorite(busLine)) removeFavorite(item)
+                else saveFavorite(item)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
+    }
+
+    private fun removeFavorite(item: MenuItem) {
+        item.setIcon(R.drawable.ic_favorite_outline)
+        viewModel.removeFavorite(busLine)
+        Toast.makeText(this, R.string.remove_favorite, Toast.LENGTH_SHORT).show()
+        invalidateOptionsMenu()
+    }
+
+    private fun saveFavorite(item: MenuItem) {
+        item.setIcon(R.drawable.ic_favorite_filled)
+        viewModel.saveFavorite(busLine)
+        Toast.makeText(this, R.string.save_favorite, Toast.LENGTH_SHORT).show()
+        invalidateOptionsMenu()
     }
 
     private fun setupViews() {

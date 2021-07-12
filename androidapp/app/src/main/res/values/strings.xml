@@ -12,4 +12,6 @@
     <string name="menu_favorite_description">Confira suas linhas favoritas e verifique onde estão os ônibus das mesmas.</string>
     <string name="line">Linha %s</string>
     <string name="search_bus_line">Buscar linha de ônibus</string>
+    <string name="save_favorite">Linha adiciona aos Favoritos!</string>
+    <string name="remove_favorite">Linha removida dos Favoritos!</string>
 </resources>
