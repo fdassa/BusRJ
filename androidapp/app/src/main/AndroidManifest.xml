@@ -2,7 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.fdassa.busrj">
-
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
@@ -21,19 +20,19 @@
         android:usesCleartextTraffic="true"
         tools:ignore="AllowBackup">
 
-        <meta-data
-            android:name="com.google.android.geo.API_KEY"
-            android:value="@string/google_maps_key" />
-
-        <activity
-            android:name=".features.details.BusesByLineActivity"
-            android:label="@string/title_activity_maps">
+        <activity android:name=".features.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+
+        <activity android:name=".features.details.BusesByLineActivity" />
     </application>
 
 </manifest>

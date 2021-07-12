@@ -4,4 +4,8 @@
     <string name="error_title">Algo deu errado</string>
     <string name="error_description">Ocorreu um problema ao tentar carregar esta tela. Confira sua conexão e tente novamente.</string>
     <string name="try_again">Tentar Novamente</string>
+    <string name="menu_search_title">Buscar</string>
+    <string name="menu_search_description">Busque uma linha de ônibus para saber onde os ônibus dessa linha se encontram</string>
+    <string name="menu_favorite_title">Favoritos</string>
+    <string name="menu_favorite_description">Confira suas linhas favoritas e verifique onde estão os ônibus das mesmas.</string>
 </resources>

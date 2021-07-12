@@ -20,6 +20,7 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
+        style="@style/Title"
         android:id="@+id/tv_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -31,6 +32,7 @@
         app:layout_constraintTop_toBottomOf="@id/iv_icon" />
 
     <TextView
+        style="@style/Description"
         android:id="@+id/tv_description"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,6 +44,7 @@
         app:layout_constraintTop_toBottomOf="@id/tv_title" />
 
     <com.google.android.material.button.MaterialButton
+        style="@style/Button"
         android:id="@+id/bt_try_again"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
