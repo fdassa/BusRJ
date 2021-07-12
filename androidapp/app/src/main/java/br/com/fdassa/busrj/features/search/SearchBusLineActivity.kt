@@ -18,8 +18,8 @@ class SearchBusLineActivity : AppCompatActivity() {
 
     private val viewModel: SearchBusLineViewModel by viewModel()
     private lateinit var binding: ActivitySearchBusLineBinding
-    private val searchBusLineAdapter: SearchBusLineAdapter by lazy {
-        SearchBusLineAdapter { busLine ->
+    private val busLineAdapter: BusLineAdapter by lazy {
+        BusLineAdapter { busLine ->
             viewModel.navigateToBusesByLine(this, busLine)
         }
     }
@@ -58,7 +58,7 @@ class SearchBusLineActivity : AppCompatActivity() {
                 binding.stateView.showError()
             }
             .observeOnSuccess {
-                searchBusLineAdapter.loadBusLineList(it)
+                busLineAdapter.loadBusLineList(it)
                 if (it.isEmpty()) {
                     binding.rvSearchResults.hide()
                     binding.stateView.showEmptyState()
@@ -77,7 +77,7 @@ class SearchBusLineActivity : AppCompatActivity() {
 
         binding.rvSearchResults.apply {
             layoutManager = LinearLayoutManager(this@SearchBusLineActivity)
-            adapter = searchBusLineAdapter
+            adapter = busLineAdapter
         }
 
         binding.stateView.onButtonClick = {
@@ -87,7 +87,7 @@ class SearchBusLineActivity : AppCompatActivity() {
 
     private fun handleQuery(query: String?): Boolean = query?.let {
         if (it.length > 1) viewModel.searchBusLine(it)
-        else searchBusLineAdapter.loadBusLineList(emptyList())
+        else busLineAdapter.loadBusLineList(emptyList())
         true
     } ?: false
 }

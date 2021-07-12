@@ -6,7 +6,7 @@ import br.com.fdassa.busrj.R
 import br.com.fdassa.busrj.databinding.ItemBusLineBinding
 import br.com.fdassa.busrj.network.models.BusLine
 
-class SearchBusItem(
+class BusLineItem(
     view: View,
     private val onItemClick: (BusLine) -> Unit
 ) : RecyclerView.ViewHolder(view) {
