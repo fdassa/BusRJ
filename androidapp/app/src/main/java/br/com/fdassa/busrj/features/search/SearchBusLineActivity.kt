@@ -5,6 +5,7 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.SearchView
 import androidx.recyclerview.widget.LinearLayoutManager
+import br.com.fdassa.busrj.R
 import br.com.fdassa.busrj.databinding.ActivitySearchBusLineBinding
 import br.com.fdassa.busrj.network.observeOnError
 import br.com.fdassa.busrj.network.observeOnLoading
@@ -12,6 +13,7 @@ import br.com.fdassa.busrj.network.observeOnSuccess
 import br.com.fdassa.busrj.network.setLifecycleOwner
 import br.com.fdassa.busrj.utils.hide
 import br.com.fdassa.busrj.utils.show
+import br.com.fdassa.busrj.views.BusLineAdapter
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class SearchBusLineActivity : AppCompatActivity() {
@@ -61,7 +63,7 @@ class SearchBusLineActivity : AppCompatActivity() {
                 busLineAdapter.loadBusLineList(it)
                 if (it.isEmpty()) {
                     binding.rvSearchResults.hide()
-                    binding.stateView.showEmptyState()
+                    showEmptyState()
                 } else {
                     binding.stateView.hide()
                     binding.rvSearchResults.show()
@@ -90,4 +92,12 @@ class SearchBusLineActivity : AppCompatActivity() {
         else busLineAdapter.loadBusLineList(emptyList())
         true
     } ?: false
+
+    private fun showEmptyState() {
+        binding.stateView.showEmptyState(
+            iconRes = R.drawable.ic_search,
+            titleRes = R.string.empty_search_title,
+            descriptionRes = R.string.empty_search_description
+        )
+    }
 }

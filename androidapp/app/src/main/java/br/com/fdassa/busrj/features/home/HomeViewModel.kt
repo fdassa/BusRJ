@@ -11,4 +11,8 @@ class HomeViewModel(
     fun navigateToSearchBusLine(context: Context) {
         navigation.navigateToSearchBusLine(context)
     }
+
+    fun navigateToFavorites(context: Context) {
+        navigation.navigateToFavorites(context)
+    }
 }

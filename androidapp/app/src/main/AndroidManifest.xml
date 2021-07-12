@@ -38,6 +38,10 @@
             android:label="@string/menu_search_title"
             android:name=".features.search.SearchBusLineActivity" />
 
+        <activity
+            android:label="@string/menu_favorite_title"
+            android:name=".features.favorites.FavoritesActivity" />
+
     </application>
 
 </manifest>

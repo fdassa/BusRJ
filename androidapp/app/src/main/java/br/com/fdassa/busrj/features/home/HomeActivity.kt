@@ -23,5 +23,9 @@ class HomeActivity : AppCompatActivity() {
         binding.menuSearch.setOnClickListener {
             viewModel.navigateToSearchBusLine(this)
         }
+
+        binding.menuFavorites.setOnClickListener {
+            viewModel.navigateToFavorites(this)
+        }
     }
 }

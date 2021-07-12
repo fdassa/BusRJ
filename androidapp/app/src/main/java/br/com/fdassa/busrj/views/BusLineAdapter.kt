@@ -1,4 +1,4 @@
-package br.com.fdassa.busrj.features.search
+package br.com.fdassa.busrj.views
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

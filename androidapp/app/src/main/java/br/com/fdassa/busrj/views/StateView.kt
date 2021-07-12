@@ -46,12 +46,16 @@ class StateView : ConstraintLayout {
         binding.btTryAgain.show()
     }
 
-    fun showEmptyState() {
+    fun showEmptyState(
+        iconRes: Int,
+        titleRes: Int,
+        descriptionRes: Int
+    ) {
         binding.groupErrorState.show()
         binding.progressBar.hide()
-        binding.ivIcon.setImageResource(R.drawable.ic_search)
-        binding.tvTitle.setText(R.string.empty_title)
-        binding.tvDescription.setText(R.string.empty_description)
+        binding.ivIcon.setImageResource(iconRes)
+        binding.tvTitle.setText(titleRes)
+        binding.tvDescription.setText(descriptionRes)
         binding.btTryAgain.hide()
     }
 }

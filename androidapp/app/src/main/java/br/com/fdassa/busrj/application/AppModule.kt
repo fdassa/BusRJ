@@ -1,6 +1,7 @@
 package br.com.fdassa.busrj.application
 
 import br.com.fdassa.busrj.features.details.BusesByLineViewModel
+import br.com.fdassa.busrj.features.favorites.FavoritesViewModel
 import br.com.fdassa.busrj.features.home.HomeViewModel
 import br.com.fdassa.busrj.features.search.SearchBusLineViewModel
 import br.com.fdassa.busrj.navigation.AppNavigation
@@ -19,5 +20,6 @@ val appModule = module {
     viewModel { HomeViewModel(get()) }
     viewModel { BusesByLineViewModel(get()) }
     viewModel { SearchBusLineViewModel(get(), get()) }
+    viewModel { FavoritesViewModel(get(), get()) }
 }
 

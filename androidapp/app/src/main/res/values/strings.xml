@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">BusRJ</string>
-    <string name="title_activity_maps">Map</string>
-    <string name="empty_title">Nenhum resultado encontrado</string>
-    <string name="empty_description">Não encontramos nenhum resultado para a busca realizada. Confira se o campo buscado foi digitado corretamente.</string>
+    <string name="empty_search_title">Nenhum resultado encontrado</string>
+    <string name="empty_search_description">Não encontramos nenhum resultado para a busca realizada. Confira se o campo buscado foi digitado corretamente.</string>
+    <string name="empty_favorites_title">Não há favoritos</string>
+    <string name="empty_favorites_description">Você ainda não favoritou nenhuma linha de ônibus. Busque por uma linha e ao entrar nos detalhes dessa linha clique no coração para favoritá-la.</string>
     <string name="error_title">Algo deu errado</string>
     <string name="error_description">Ocorreu um problema ao tentar carregar esta tela. Confira sua conexão e tente novamente.</string>
     <string name="try_again">Tentar Novamente</string>

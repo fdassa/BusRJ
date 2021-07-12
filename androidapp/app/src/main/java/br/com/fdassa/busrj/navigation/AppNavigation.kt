@@ -2,6 +2,7 @@ package br.com.fdassa.busrj.navigation
 
 import android.content.Context
 import br.com.fdassa.busrj.features.details.BusesByLineActivity
+import br.com.fdassa.busrj.features.favorites.FavoritesActivity
 import br.com.fdassa.busrj.features.search.SearchBusLineActivity
 import br.com.fdassa.busrj.network.models.BusLine
 import br.com.fdassa.busrj.utils.startActivity
@@ -20,5 +21,9 @@ class AppNavigation {
 
     fun navigateToSearchBusLine(context: Context) {
         context.startActivity<SearchBusLineActivity>()
+    }
+
+    fun navigateToFavorites(context: Context) {
+        context.startActivity<FavoritesActivity>()
     }
 }
