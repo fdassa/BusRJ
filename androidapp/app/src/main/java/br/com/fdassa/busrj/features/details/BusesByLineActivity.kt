@@ -5,7 +5,9 @@ import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import br.com.fdassa.busrj.R
 import br.com.fdassa.busrj.databinding.ActivityBusesByLineBinding
+import br.com.fdassa.busrj.navigation.AppNavigation.Companion.EXTRA_BUS_LINE
 import br.com.fdassa.busrj.network.models.Bus
+import br.com.fdassa.busrj.network.models.BusLine
 import br.com.fdassa.busrj.network.observeOnError
 import br.com.fdassa.busrj.network.observeOnLoading
 import br.com.fdassa.busrj.network.observeOnSuccess
@@ -13,35 +15,26 @@ import br.com.fdassa.busrj.network.setLifecycleOwner
 import br.com.fdassa.busrj.utils.bitmapDescriptorFromVector
 import br.com.fdassa.busrj.utils.hide
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.LatLngBounds
 import com.google.android.gms.maps.model.MarkerOptions
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
-class BusesByLineActivity : AppCompatActivity(), OnMapReadyCallback {
+class BusesByLineActivity : AppCompatActivity() {
 
     private val viewModel: BusesByLineViewModel by viewModel()
-    private lateinit var mMap: GoogleMap
+    private lateinit var googleMap: GoogleMap
     private lateinit var binding: ActivityBusesByLineBinding
+    private val busLine by lazy { intent.getSerializableExtra(EXTRA_BUS_LINE) as BusLine }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        title = "Linha 343"
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
         binding = ActivityBusesByLineBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Obtain the SupportMapFragment and get notified when the map is ready to be used.
-        val mapFragment = supportFragmentManager
-            .findFragmentById(R.id.map) as SupportMapFragment
-        mapFragment.getMapAsync(this)
-
-        binding.stateView.onButtonClick = {
-            viewModel.getBusesByLine("urn:ngsi-ld:Linha:343")
-        }
+        setupViews()
         setupObservables()
     }
 
@@ -55,11 +48,22 @@ class BusesByLineActivity : AppCompatActivity(), OnMapReadyCallback {
         return super.onOptionsItemSelected(item)
     }
 
-    override fun onMapReady(googleMap: GoogleMap) {
-        mMap = googleMap// Add a marker in Sydney and move the camera
-        mMap.setMinZoomPreference(10f)
-        mMap.setMaxZoomPreference(25f)
-        viewModel.getBusesByLine("urn:ngsi-ld:Linha:343")
+    private fun setupViews() {
+        title = getString(R.string.line, busLine.name)
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
+        binding.stateView.onButtonClick = {
+            viewModel.getBusesByLine(busLine.id)
+        }
+
+        val mapFragment = supportFragmentManager
+            .findFragmentById(R.id.map) as SupportMapFragment
+        mapFragment.getMapAsync {
+            googleMap = it
+            googleMap.setMinZoomPreference(10f)
+            googleMap.setMaxZoomPreference(25f)
+            viewModel.getBusesByLine(busLine.id)
+        }
     }
 
     private fun setupObservables() {
@@ -80,7 +84,7 @@ class BusesByLineActivity : AppCompatActivity(), OnMapReadyCallback {
     private fun displayBusesLocations(buses: List<Bus>) {
         buses.forEach {
             val location = LatLng(it.latitude, it.longitude)
-            mMap.addMarker(
+            googleMap.addMarker(
                 MarkerOptions()
                     .position(location)
                     .icon(bitmapDescriptorFromVector(R.drawable.ic_bus_marker))
@@ -95,6 +99,6 @@ class BusesByLineActivity : AppCompatActivity(), OnMapReadyCallback {
             buses.maxByOrNull { it.longitude }!!.longitude
         )
         val bounds = LatLngBounds(southwest, northeast)
-        mMap.setLatLngBoundsForCameraTarget(bounds)
+        googleMap.setLatLngBoundsForCameraTarget(bounds)
     }
 }

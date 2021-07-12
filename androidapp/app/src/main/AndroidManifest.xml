@@ -33,6 +33,11 @@
             android:value="@string/google_maps_key" />
 
         <activity android:name=".features.details.BusesByLineActivity" />
+
+        <activity
+            android:label="@string/menu_search_title"
+            android:name=".features.search.SearchBusLineActivity" />
+
     </application>
 
 </manifest>

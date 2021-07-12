@@ -18,5 +18,6 @@
     <style name="Button" parent="Widget.MaterialComponents.Button">
         <item name="android:textSize">16sp</item>
         <item name="android:padding">16dp</item>
+        <item name="backgroundTint">@color/teal_700</item>
     </style>
 </resources>

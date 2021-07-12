@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">BusRJ</string>
     <string name="title_activity_maps">Map</string>
+    <string name="empty_title">Nenhum resultado encontrado</string>
+    <string name="empty_description">Não encontramos nenhum resultado para a busca realizada. Confira se o campo buscado foi digitado corretamente.</string>
     <string name="error_title">Algo deu errado</string>
     <string name="error_description">Ocorreu um problema ao tentar carregar esta tela. Confira sua conexão e tente novamente.</string>
     <string name="try_again">Tentar Novamente</string>
@@ -8,4 +10,6 @@
     <string name="menu_search_description">Busque uma linha de ônibus para saber onde os ônibus dessa linha se encontram</string>
     <string name="menu_favorite_title">Favoritos</string>
     <string name="menu_favorite_description">Confira suas linhas favoritas e verifique onde estão os ônibus das mesmas.</string>
+    <string name="line">Linha %s</string>
+    <string name="search_bus_line">Buscar linha de ônibus</string>
 </resources>

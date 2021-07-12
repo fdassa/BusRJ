@@ -14,7 +14,7 @@
         tools:ignore="FragmentTagUsage" />
 
     <br.com.fdassa.busrj.views.StateView
-        android:id="@+id/stateView"
+        android:id="@+id/state_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

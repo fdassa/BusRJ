@@ -1,6 +1,7 @@
 package br.com.fdassa.busrj.network.models
 
 import com.squareup.moshi.Json
+import java.io.Serializable
 
 data class Bus(
     @field:Json(name = "id") val id: String,
@@ -9,4 +10,4 @@ data class Bus(
     @field:Json(name = "latitude") val latitude: Double,
     @field:Json(name = "longitude") val longitude: Double,
     @field:Json(name = "refLinha") val busLineId: String,
-)
+): Serializable
