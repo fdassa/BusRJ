@@ -9,11 +9,12 @@ import br.com.fdassa.busrj.network.BusApi
 import br.com.fdassa.busrj.network.BusLocalStorage
 import br.com.fdassa.busrj.network.BusRepository
 import br.com.fdassa.busrj.network.NetworkConfig.provideApi
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 
 val appModule = module {
-    single { provideApi(BusApi::class.java) }
+    single { provideApi(androidContext(), BusApi::class.java) }
     single { BusLocalStorage() }
     single { BusRepository(get(), get()) }
     single { AppNavigation() }
