@@ -10,11 +10,13 @@ function sleep(ms) {
 async function execute() {
 	while(true) {
 		Network.obtemDadosOnibus().then( dadosOnibus => {
+			console.log("Recupera dados dos ônibus com sucesso.");
 			const dadosParseados = BusUtils.parseDadosOnibus(dadosOnibus);
-			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaLinhas)).then(res => 
-				Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaOnibus)).then(res => 
-					console.log("Successfully updated fiware database")
-				)
+			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaLinhas)).then(res =>
+				console.log("Atualiza linhas de ônibus com sucesso.")
+			);
+			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaOnibus)).then(res => 
+				console.log("Atualiza ônibus com sucesso.")
 			);
 		});
 		await sleep(waitTimeAfterUpdate);

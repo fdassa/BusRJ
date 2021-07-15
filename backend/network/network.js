@@ -7,19 +7,18 @@ class Network {
 	static async atualizaBancoDeDados(updateBody) {
 		try {
 			const response = await axios.post(urlUpdateFiware, updateBody);
-			console.log(response.status);
+			return response;
 		} catch (error) {
-			console.error(error);
+			console.error(error.status);
 		}
 	}
 
 	static async obtemDadosOnibus() {
 		try {
 			const response = await axios.get(urlPrefeitura);
-			console.log(response.status);
 			return response.data;
 		} catch (error) {
-			console.error(error);
+			console.error(error.status);
 		}
 	}
 }
