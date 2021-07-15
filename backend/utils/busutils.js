@@ -44,7 +44,7 @@ class BusUtils {
 		return listaLinhas.filter((v,i,a)=>a.findIndex(t=>(t.id === v.id))===i);
 	}
 	
-	static parseDadosOnibus(dadosOnibus) {
+	static obtemListaDeEntidades(dadosOnibus) {
 		var listaOnibusFormatada = [];
 
 		if (!dadosOnibus.DATA) {
@@ -58,12 +58,11 @@ class BusUtils {
 		var listaOnibus = dadosOnibus.DATA;
 		
 		const listaOnibusFiltrada = this.#filtraListaDeOnibus(listaOnibus);
-		const listaOnibusOrdenada = this.#ordenaListaDeOnibusPelaData(listaOnibusFiltrada);
-		const listaLinhas = this.#obtemListaLinhas(listaOnibusOrdenada);
-		return {
-			listaOnibus: this.#formataListaOnibus(listaOnibusOrdenada),
-			listaLinhas: this.#removeLinhasDuplicadas(listaLinhas)
-		};
+		const listaOnibusFiltradaOrdenada = this.#ordenaListaDeOnibusPelaData(listaOnibusFiltrada);
+		const listaOnibusFiltradaOrdenadaFormatada = this.#formataListaOnibus(listaOnibusFiltradaOrdenada);
+		const listaLinhas = this.#obtemListaLinhas(listaOnibusFiltradaOrdenada);
+		const listaLinhasFormatada = this.#removeLinhasDuplicadas(listaLinhas)
+		return listaOnibusFiltradaOrdenadaFormatada.concat(listaLinhasFormatada);
 	}
 }
 

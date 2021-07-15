@@ -11,12 +11,9 @@ async function execute() {
 	while(true) {
 		Network.obtemDadosOnibus().then( dadosOnibus => {
 			console.log("Recupera dados dos ônibus com sucesso.");
-			const dadosParseados = BusUtils.parseDadosOnibus(dadosOnibus);
-			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaLinhas)).then(res =>
-				console.log("Atualiza linhas de ônibus com sucesso.")
-			);
-			Network.atualizaBancoDeDados(new UpdateBody("append", dadosParseados.listaOnibus)).then(res => 
-				console.log("Atualiza ônibus com sucesso.")
+			const listaEntidades = BusUtils.obtemListaDeEntidades(dadosOnibus);
+			Network.atualizaBancoDeDados(new UpdateBody("append", listaEntidades)).then(res =>
+				console.log("Atualiza banco de dados com sucesso.")
 			);
 		});
 		await sleep(waitTimeAfterUpdate);
