@@ -1,7 +1,7 @@
 const BusUtils = require("./utils/busutils");
 const UpdateBody = require("./model/updatebody");
 const Network = require("./network/network");
-const waitTimeAfterUpdate = 15*60*1000; // atualiza o banco de dados a cada 15 minutos
+const waitTimeAfterUpdate = 2*60*1000; // atualiza o banco de dados a cada 2 minutos
 
 function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
